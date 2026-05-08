@@ -5,19 +5,27 @@ LOCATION=$HOME
 echo -e "\n\nBacking up .bashrc, .bash_aliases, .inputrc and .tmux.conf"
 
 if [ -f $HOME/.bashrc ]; then
-  mv $HOME/.bashrc $HOME/.bashrc.bak
+  mv $HOME/.bashrc $HOME/.bashrc.bak.$(date +%s)
 fi
 
 if [ -f $HOME/.bash_aliases ]; then
-  mv $HOME/.bash_aliases $HOME/.bash_aliases.bak
+  mv $HOME/.bash_aliases $HOME/.bash_aliases.bak.$(date +%s)
 fi
 
 if [ -f $HOME/.inputrc ]; then
-  mv $HOME/.inputrc $HOME/.inputrc.bak
+  mv $HOME/.inputrc $HOME/.inputrc.bak.$(date +%s)
 fi
 
 if [ -f $HOME/.tmux.conf ]; then
-  mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
+  mv $HOME/.tmux.conf $HOME/.tmux.conf.bak.$(date +%s)
+fi
+
+if [ -f $HOME/.gitconfig ]; then
+  mv $HOME/.gitconfig $HOME/.gitconfig.bak.$(date +%s)
+fi
+
+if [ -f $HOME/.config/nvim/init.vim ]; then
+  mv $HOME/.config/nvim/init.vim $HOME/.config/nvim/init.vim.bak.$(date +%s)
 fi
 
 cat << EOF >> $HOME/.gitconfig
