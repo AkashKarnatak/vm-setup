@@ -42,7 +42,11 @@ EOF
 
 echo -e "\nInstalling required software..."
 
-sudo apt update && sudo apt install -y neovim xclip
+sudo apt update && sudo apt install -y xclip
+
+echo -e "\nInstalling neovim..."
+
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_nvim.sh | bash
 
 mkdir -p $HOME/.config/nvim
 
