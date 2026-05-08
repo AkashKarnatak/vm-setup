@@ -11,13 +11,14 @@ vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus"
 
 -- Colorscheme
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme("catppuccin")
 
 -- Key remaps: swap 0, $, ^ across normal, visual, and operator-pending modes
 local modes = { "n", "v", "o" }
 vim.keymap.set(modes, "0", "$")
 vim.keymap.set(modes, "$", "^")
-vim.keymap.set(modes, "^", "0")
+vim.keymap.set(modes, "!", "0")
+vim.keymap.set(modes, "^", "!")
 
 vim.g.clipboard = {
   name = 'OSC 52',
