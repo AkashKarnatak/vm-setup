@@ -52,9 +52,9 @@ EOF
 
 echo -e "\nDownloading new config..."
 
-curl https://raw.githubusercontent.com/AkashKarnatak/digitalocean-setup/main/.bashrc -o ~/.bashrc
-curl https://raw.githubusercontent.com/AkashKarnatak/digitalocean-setup/main/.bash_aliases -o ~/.bash_aliases
-curl https://raw.githubusercontent.com/AkashKarnatak/digitalocean-setup/main/.inputrc -o ~/.inputrc
-curl https://raw.githubusercontent.com/AkashKarnatak/digitalocean-setup/main/.tmux.conf -o ~/.tmux.conf
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bashrc -o ~/.bashrc
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bash_aliases -o ~/.bash_aliases
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.inputrc -o ~/.inputrc
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.tmux.conf -o ~/.tmux.conf
 
 echo -e "\n\nLoad new configuration using,\n\tsource ~/.bashrc && bind -f  ~/.inputrc"
