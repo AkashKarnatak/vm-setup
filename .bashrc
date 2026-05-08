@@ -137,6 +137,10 @@ if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -n "$SSH_CONNECTION" ]; then
+    export NVIM_NOTTYFAST=1
+fi
+
 export EDITOR=nvim
 export VISUAL=nvim
 export MYVIMRC=$HOME/.config/nvim/init.lua
