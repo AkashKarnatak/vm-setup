@@ -24,8 +24,8 @@ if [ -f $HOME/.gitconfig ]; then
   mv $HOME/.gitconfig $HOME/.gitconfig.bak.$(date +%s)
 fi
 
-if [ -f $HOME/.config/nvim/init.vim ]; then
-  mv $HOME/.config/nvim/init.vim $HOME/.config/nvim/init.vim.bak.$(date +%s)
+if [ -f $HOME/.config/nvim/init.lua ]; then
+  mv $HOME/.config/nvim/init.lua $HOME/.config/nvim/init.lua.bak.$(date +%s)
 fi
 
 cat << EOF >> $HOME/.gitconfig
@@ -45,29 +45,6 @@ echo -e "\nInstalling required software..."
 sudo apt update && sudo apt install -y neovim xclip
 
 mkdir -p $HOME/.config/nvim
-cat << EOF >> $HOME/.config/nvim/init.vim
-set number
-set nowrap
-set cursorline
-set tabstop=2
-set shiftwidth=2
-set splitbelow
-set splitright
-set expandtab
-set smartindent
-colorscheme habamax
-set clipboard=unnamedplus
-
-nnoremap 0 $
-nnoremap $ ^
-nnoremap ^ 0
-vnoremap 0 $
-vnoremap $ ^
-vnoremap ^ 0
-onoremap 0 $
-onoremap $ ^
-onoremap ^ 0
-EOF
 
 echo -e "\nDownloading new config..."
 
@@ -75,5 +52,6 @@ curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bashrc -o ~/
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bash_aliases -o ~/.bash_aliases
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.inputrc -o ~/.inputrc
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.tmux.conf -o ~/.tmux.conf
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/init.lua -o ~/.config/nvim/init.lua
 
 echo -e "\n\nLoad new configuration using,\n\tsource ~/.bashrc && bind -f  ~/.inputrc"
