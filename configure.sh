@@ -48,6 +48,17 @@ set splitright
 set expandtab
 set smartindent
 colorscheme habamax
+set clipboard=unnamedplus
+
+nnoremap 0 $
+nnoremap $ ^
+nnoremap ^ 0
+vnoremap 0 $
+vnoremap $ ^
+vnoremap ^ 0
+onoremap 0 $
+onoremap $ ^
+onoremap ^ 0
 EOF
 
 echo -e "\nDownloading new config..."
