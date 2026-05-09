@@ -9,6 +9,8 @@ vim.opt.splitright = true
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus"
+vim.opt.path:append("**")
+vim.opt.wildmenu = true
 
 -- Colorscheme
 vim.cmd.colorscheme("catppuccin")
