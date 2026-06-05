@@ -48,6 +48,10 @@ echo -e "\nInstalling neovim..."
 
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_nvim.sh | bash
 
+echo -e "\nInstalling latest tmux..."
+
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_tmux.sh | bash
+
 mkdir -p $HOME/.config/nvim
 
 echo -e "\nDownloading new config..."
