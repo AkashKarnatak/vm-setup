@@ -144,3 +144,4 @@ fi
 export EDITOR=nvim
 export VISUAL=nvim
 export MYVIMRC=$HOME/.config/nvim/init.lua
+alias nvim=hx
