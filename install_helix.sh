@@ -12,8 +12,14 @@ DEST="$HOME/.local"
 # ships with, and leaves the config dir holding only hand-written config (so it
 # can be a git repo you clone into without a non-empty-directory conflict).
 RUNTIME_DEST="$DEST/bin/runtime"
-LEGACY_RUNTIME="${XDG_CONFIG_HOME:-$HOME/.config}/helix/runtime"
+CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/helix"
+LEGACY_RUNTIME="$CONFIG_DIR/runtime"
 COMPLETION_DEST="${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions"
+# config.toml lives next to this script in the repo; when the script is piped
+# through bash (curl ... | bash) there is no script dir, so fall back to fetching
+# it from GitHub like configure.sh does for the other dotfiles.
+CONFIG_SRC="$(dirname "${BASH_SOURCE[0]:-}")/config.toml"
+CONFIG_URL="https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/config.toml"
 
 trap 'rm -rf "$TMPDIR"' EXIT
 
@@ -82,7 +88,22 @@ else
   echo "Note: contrib/completion/hx.bash not in this release; skipping completion" >&2
 fi
 
-echo "Done. hx installed at $DEST/bin/hx, runtime at $RUNTIME_DEST"
+# Back up any existing config the same way configure.sh does for other dotfiles
+mkdir -p "$CONFIG_DIR"
+if [[ -f "$CONFIG_DIR/config.toml" ]]; then
+  BACKUP="$CONFIG_DIR/config.toml.bak.$(date +%s)"
+  echo "Backing up existing config to $BACKUP..."
+  mv "$CONFIG_DIR/config.toml" "$BACKUP"
+fi
+
+echo "Installing config to $CONFIG_DIR/config.toml..."
+if [[ -f "$CONFIG_SRC" ]]; then
+  install -m 0644 "$CONFIG_SRC" "$CONFIG_DIR/config.toml"
+else
+  curl -sL --fail -o "$CONFIG_DIR/config.toml" "$CONFIG_URL"
+fi
+
+echo "Done. hx installed at $DEST/bin/hx, runtime at $RUNTIME_DEST, config at $CONFIG_DIR/config.toml"
 
 # Sanity check
 if ! command -v hx >/dev/null 2>&1; then

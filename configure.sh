@@ -24,10 +24,6 @@ if [ -f $HOME/.gitconfig ]; then
   mv $HOME/.gitconfig $HOME/.gitconfig.bak.$(date +%s)
 fi
 
-if [ -f $HOME/.config/nvim/init.lua ]; then
-  mv $HOME/.config/nvim/init.lua $HOME/.config/nvim/init.lua.bak.$(date +%s)
-fi
-
 cat << EOF >> $HOME/.gitconfig
 [alias]
   lg = lg2
@@ -48,11 +44,16 @@ echo -e "\nInstalling neovim..."
 
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_nvim.sh | bash
 
+echo -e "\nInstalling helix..."
+
+curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_helix.sh | bash
+
 echo -e "\nInstalling latest tmux..."
 
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/install_tmux.sh | bash
 
 mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config/helix
 
 echo -e "\nDownloading new config..."
 
@@ -60,6 +61,5 @@ curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bashrc -o ~/
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.bash_aliases -o ~/.bash_aliases
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.inputrc -o ~/.inputrc
 curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/.tmux.conf -o ~/.tmux.conf
-curl https://raw.githubusercontent.com/AkashKarnatak/vm-setup/main/init.lua -o ~/.config/nvim/init.lua
 
 echo -e "\n\nLoad new configuration using,\n\tsource ~/.bashrc && bind -f  ~/.inputrc"

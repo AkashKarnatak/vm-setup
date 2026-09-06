@@ -1,0 +1,50 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+popup-border = "all"
+bufferline = "always"
+default-yank-register = "+"
+trim-final-newlines = true
+trim-trailing-whitespace = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "block"
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+left = ["separator", "mode"]
+center = ["version-control", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+right = ["diagnostics", "selections", "register", "position", "file-type", "separator"]
+separator = "▊"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+# Vim-style paragraph motions (Helix binds these to [p and ]p by default)
+[keys.normal]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+[keys.select]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+
+# Switch to current buffer's directory before performing these commands
+[keys.normal.space]
+"f" = [':cd %sh{dirname "%{buffer_name}"}', "file_picker"]
+"F" = [':cd %sh{dirname "%{buffer_name}"}', "file_picker_in_current_directory"]
+"e" = [':cd %sh{dirname "%{buffer_name}"}', "file_explorer"]
+"E" = [':cd %sh{dirname "%{buffer_name}"}', "file_explorer_in_current_directory"]
+"g" = [':cd %sh{dirname "%{buffer_name}"}', "changed_file_picker"]
+"/" = [':cd %sh{dirname "%{buffer_name}"}', "global_search"]
+
+# Switch to current buffer's directory as well
+[keys.normal.g]
+n = ["goto_next_buffer",     ':cd %sh{dirname "%{buffer_name}"}']
+p = ["goto_previous_buffer", ':cd %sh{dirname "%{buffer_name}"}']
+a = ["goto_last_accessed_file", ':cd %sh{dirname "%{buffer_name}"}']
